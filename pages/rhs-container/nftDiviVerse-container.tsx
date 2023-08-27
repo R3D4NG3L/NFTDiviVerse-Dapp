@@ -34,7 +34,7 @@ const NftDiviVerseContainer: FC<IProps> = ({ enableTest }) => {
     const [showProgressModal, setShowProgressModal] = useState(false);
     const [showErrorModal, setShowErrorModal] = useState(false);
     const [errorModelDetail, setErrorModelDetail] = useState("");
-    const minimumPrzTokenToBuyNFT = 500;
+    const minimumPrzTokenToBuyNFT = 10000;
     const minimumStableCoinToBuyNFT = 500;
 
     useEffect(() => {
@@ -155,7 +155,7 @@ const NftDiviVerseContainer: FC<IProps> = ({ enableTest }) => {
                         </div>
                         <div className="flex flex-col">
                             <p>Wallet availability:</p>
-                            <p className="text-[10px] leading-tight">(you need to hold 500$ in BUSD <br />and 500 tokens at least <br />to purchase NFT)</p>
+                            <p className="text-[10px] leading-tight">(you need to hold {minimumStableCoinToBuyNFT}$ in BUSD <br />and {minimumPrzTokenToBuyNFT} PRZ tokens at least <br />to purchase NFT)</p>
                             <p>{displayMinimumRequirementsSatisfactionIcon(stableCoinHeldMinimumOk)} {bigIntFormatter(stableCoinHeld)} BUSD</p>
                             <p>{displayMinimumRequirementsSatisfactionIcon(tokenHeldMinimumOk)} {bigIntFormatter(tokenHeld)} Token</p>
                         </div>

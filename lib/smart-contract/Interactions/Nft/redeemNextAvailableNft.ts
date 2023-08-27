@@ -52,11 +52,11 @@ export const redeemNextAvailableNft = async (isTestMode: boolean) => {
     let busdTowardsRevenueWallet = await getErc20Allowance(STABLE_COIN_CONTRACT_ADDRESS, revenuesWallet);
     // BUSD towards NFT contract address
     let busdTowardsNftContract = await getErc20Allowance(STABLE_COIN_CONTRACT_ADDRESS, NFT_CONTRACT_ADDRESS);
-    // Token towards Dead Wallet
-    let tokenAllowanceTowardsDeadWallet = await getErc20Allowance(TOKEN_CONTRACT_ADDRESS, deadWallet);
-    // Token towards NFT contract address
-    let tokenAllowanceTowardsNftContract = await getErc20Allowance(TOKEN_CONTRACT_ADDRESS, NFT_CONTRACT_ADDRESS);
-    logToConsole(`redeemNextAvailableNft - busdTowardsRevenueWallet: ${busdTowardsRevenueWallet} - busdTowardsNftContract: ${busdTowardsNftContract} - tokenAllowanceTowardsDeadWallet: ${tokenAllowanceTowardsDeadWallet} - tokenAllowanceTowardsNftContract: ${tokenAllowanceTowardsNftContract}`);
+    // Praiza towards Dead Wallet
+    let praizaAllowanceTowardsDeadWallet = await getErc20Allowance(TOKEN_CONTRACT_ADDRESS, deadWallet);
+    // Praiza towards NFT contract address
+    let praizaAllowanceTowardsNftContract = await getErc20Allowance(TOKEN_CONTRACT_ADDRESS, NFT_CONTRACT_ADDRESS);
+    logToConsole(`redeemNextAvailableNft - busdTowardsRevenueWallet: ${busdTowardsRevenueWallet} - busdTowardsNftContract: ${busdTowardsNftContract} - praizaAllowanceTowardsDeadWallet: ${praizaAllowanceTowardsDeadWallet} - praizaAllowanceTowardsNftContract: ${praizaAllowanceTowardsNftContract}`);
 
     let minStableCoinPrice = new BN(voucherToRedeem?.['minStableCoinPrice']);
     let minTokenPrice = new BN(voucherToRedeem?.['minTokenPrice']);
@@ -72,16 +72,16 @@ export const redeemNextAvailableNft = async (isTestMode: boolean) => {
             logToConsole(`redeemNextAvailableNft - busdTowardsNftContract < minStableCoinPrice. Completed!`);
         });  // Set Allowance
     }
-    if (tokenAllowanceTowardsDeadWallet < minTokenPrice) {
-        logToConsole(`redeemNextAvailableNft - tokenAllowanceTowardsDeadWallet < minTokenPrice. Setting allowance...`);
+    if (praizaAllowanceTowardsDeadWallet < minTokenPrice) {
+        logToConsole(`redeemNextAvailableNft - praizaAllowanceTowardsDeadWallet < minTokenPrice. Setting allowance...`);
         await setErc20Allowance(TOKEN_CONTRACT_ADDRESS, deadWallet, minTokenPrice).then(async (result) => {
-            logToConsole(`redeemNextAvailableNft - tokenAllowanceTowardsDeadWallet < minTokenPrice. Completed!`);
+            logToConsole(`redeemNextAvailableNft - praizaAllowanceTowardsDeadWallet < minTokenPrice. Completed!`);
         });  // Set Allowance
     }
-    if (tokenAllowanceTowardsNftContract < minTokenPrice) {
-        logToConsole(`redeemNextAvailableNft - tokenAllowanceTowardsNftContract < minTokenPrice. Setting allowance...`);
+    if (praizaAllowanceTowardsNftContract < minTokenPrice) {
+        logToConsole(`redeemNextAvailableNft - praizaAllowanceTowardsNftContract < minTokenPrice. Setting allowance...`);
         await setErc20Allowance(TOKEN_CONTRACT_ADDRESS, NFT_CONTRACT_ADDRESS, minTokenPrice).then(async (result) => {
-            logToConsole(`redeemNextAvailableNft - tokenAllowanceTowardsDeadWallet < minTokenPrice. Completed!`);
+            logToConsole(`redeemNextAvailableNft - praizaAllowanceTowardsDeadWallet < minTokenPrice. Completed!`);
         });  // Set Allowance
     }
 
